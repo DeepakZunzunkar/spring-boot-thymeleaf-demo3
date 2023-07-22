@@ -35,4 +35,23 @@ public class HomeController {
 		return "home";
 		//view name --> home.html
 	}
+	
+	@GetMapping("/about")
+	public String inheritanceTest(Model model) {
+		
+		model.addAttribute("brief","Just Chill & Relax and Do what you want in your life...");
+		model.addAttribute("mobile","(+91) 99999999");
+		model.addAttribute("email","testme@gmail.com");
+		return "about";
+	}
+	
+	@GetMapping("/service")
+	public String inheritanceTest1(Model model) {
+		
+		model.addAttribute("brief","Just Chill & Relax and Do what you want in your life...");
+		model.addAttribute("mobile","(+91) 99999999");
+		model.addAttribute("email","testme@gmail.com");
+		return "service";
+	}
+	
 }
