@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Home</title>
+</head>
+
+<body>
+
+	<div style="border: 1px solid black;margin: 5px;padding: 10px;">
+		<fieldset style="font-weight: bold">Thymeleaf Expression and Variable Declairation </fieldset>
+		<h3 th:text="${ #strings.toUpperCase(topic1) }"></h3>
+		<h5>length is : <span th:text="${ # strings.length(topic1) }"></span></h5>
+		<span>Current Date : <span th:text="${currentdate}" /> </span>
+
+		<!--below variable a,b,n will be accisible only within this div -->
+		<div style="background-color: lightcyan;" th:with="a=5,b=50,n=${message} ">
+			<h3> value of a : <span th:text="${a}"></span> </h3>
+			<h3 th:text="'value of b : '+${b}"></h3>
+			<h3 th:text="'local value of n : '+${n}"></h3>
+			<h3 th:text="'sum of '+${a}+' and '+${b}+' is '+${a+b} " style="background-color: bisque"> </h3>
+		</div>
+		<h3 style="background-color: lightblue">Local value of n outside the div : <span th:text="${n}" </h3>
+	</div>
+
+	<div style="border: 1px solid black;margin: 5px;padding: 10px;">
+		<fieldset style="font-weight: bold">Iteration In Thymeleaf</fieldset>
+
+		<!--th:each  can traverse over different data types 
+		 |  object which imlements iterable
+		 | object which implements map
+		 | single value as list   -->
+
+		<p th:text="${friends}"></p>
+
+		<ul>
+			<li th:each="n,status : ${friends}">
+				<!--<span th:text="${n}"></span>-->
+				<!--<span th:text="${status.index + 1 }+' ' +${n}"></span>-->
+				<span th:style="${status.odd} ? 'color:orange;font-weight:bold' : ''"
+					th:text="${status.index + 1 }+' ' +${n}"></span>
+			</li>
+		</ul>
+		<!--here each is vairiable whch provide status and other stuf-->
+		<!--
+			index : the cuurent iterationindex, starting with zero
+			count : the number of elements processed so far
+			size : total number of elemnts in the list. 
+			even/odd : check if the current iteration index is even or odd
+			first :  check if the current iteration is the first one.
+			last :  check if the current iteration is the last one.
+		
+		-->
+	</div>
+
+	<div style="border: 1px solid black;margin: 5px;padding: 10px;">
+		<fieldset style="font-weight: bold">Conditional in Thymeleaf</fieldset>
+
+		<!-- 
+			Elvis Operator -- similar type of ternary operator
+			if-Unless -- similar type of if else
+			Switch-Case
+		-->
+
+		<!--1. Elvis -->
+		<h3> User is <span th:text="${isActive} ? 'Active' : 'Inactive'"
+				th:style="${isActive} ? 'color:green' : 'color:red'"></span></h3>
+
+
+		<!--2. If Unless-->
+		<h4>Gender :
+			<span th:if="${gender}=='M'">Male</span>
+			<span th:Unless="${gender}=='M'">Female</span>
+		</h4>
+		
+		<!-- Switch-Case -->
+		<div th:switch="${#lists.size(mlist)}" >
+			<h6 th:case="'0'">List Contain zero element</h6>
+			<h6 th:case="'1'">List contain one element</h6>
+			<h6 th:case="*">List containe more than one elements</h6>
+		</divth>
+	</div>
+	
+	<footer id="hosttag1" th:include="footer::footer1('Know About Us ',${brief},'Contact Us below ',${mobile},${email},'Deepak Zunuzunkar')">
+		
+	</footer>
+
+</body>
+
+</html>

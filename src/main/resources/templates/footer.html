@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Footer</title>
+</head>
+<body>
+	
+	<footer id="fragmentag1" th:fragment="footer1(title,brief,subtitle,mobile,email,owner)">
+		
+		<div style="background-color: black;color: snow;">
+			<h4 th:text="${title}"></h4>
+			<h4 th:text="${brief}"></h4>
+			<h4 th:text="${subtitle}"></h4>
+			<p th:text="${mobile}"></p>
+			<p th:text="${email}"></p>
+			<h6 style="text-align: right;">Copy Right @ <span th:text="${owner}" </h6>
+		</div>
+		
+	</footer>
+	
+</body>
+</html>
